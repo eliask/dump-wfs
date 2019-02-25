@@ -8,6 +8,9 @@ Dependencies:
 
 Usage:
 ```sh
+# Print out a list of layer names in server
+python dump_wfs.py https://some-wfs-server
+
 # Dump all features from layer <layerName>
 python dump_wfs.py https://some-wfs-server layerName
 

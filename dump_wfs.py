@@ -20,13 +20,13 @@ gdal.SetConfigOption('OGR_WFS_PAGE_SIZE', '1000')
 
 try:
     url = sys.argv[1]
-    layer_name = sys.argv[2]
+    layer_name = sys.argv[2] if sys.argv[2:] else None
     server_attribute_filter = sys.argv[3] if sys.argv[3:] else None
 except IndexError:
-    print(f'Usage: {sys.argv[0]} <WFS URL> <layer name> [server-side attribute filter expression]', file=sys.stderr)
+    print(f'Usage: {sys.argv[0]} <WFS URL> [layer name] [server-side attribute filter expression]', file=sys.stderr)
     print(file=sys.stderr)
-    print('NB: Use an empty layer name ("") to list the layers on the server and exit.', file=sys.stderr)
-    print('NB: Output will be printed to stdout as NDJSON', file=sys.stderr)
+    print('NB. Leave out layer name to list the layers on the server and exit.', file=sys.stderr)
+    print('NB. Output will be printed to stdout as newline-delimited GeoJSON', file=sys.stderr)
     sys.exit(1)
 
 
