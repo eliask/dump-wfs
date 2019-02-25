@@ -155,7 +155,7 @@ if not layer_name:
         layer.GetDescription()
         srs = layer.GetSpatialRef()
         name = layer.GetName()
-        print(f'Layer {i}: {name}')
+        print(f'Layer {i}: {name} srs={srs}')
     sys.exit(0)
 
 
