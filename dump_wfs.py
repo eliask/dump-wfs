@@ -2,6 +2,7 @@ import asyncio
 import sys
 import time
 import shapely.wkb
+import shapely.geometry
 import traceback
 import json
 from osgeo import ogr, gdal
@@ -140,8 +141,8 @@ async def print_features_geojson():
             lin_geom = geom.GetLinearGeometry()
             wkb = lin_geom.ExportToWkb()
             shgeom_source_crs = shapely.wkb.loads(wkb)
-            geo_dict = shapely.geometry.mapping(shgeom_source_crs)
-            geo_dict['properties'] = attributes
+            geometry = shapely.geometry.mapping(shgeom_source_crs)
+            geo_dict = dict(type='Feature', geometry=geometry, properties=attributes)
             json.dump(geo_dict, sys.stdout, ensure_ascii=False, separators=(',',':'))
             print()
 
